@@ -19,7 +19,7 @@ class CreatePaymentOfferTable extends Migration
             $table->string('institute_name',200);
             $table->string('card_type',20)->nullable();
             $table->string('coupon_code',10);
-            $table->integer('discount_value number');
+            $table->integer('discount_value');
             $table->string('discount_unit',20);
             $table->timestamp('create_date')->nullable(); 
             $table->timestamp('valid_from')->nullable(); 

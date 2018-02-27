@@ -20,6 +20,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'registration_date' =>$faker->dateTimeThisMonth,
         'promotional_reward_points' =>$faker->randomNumber(2),
         'non_promotional_reward_points' =>$faker->randomNumber(1),
+        'membership_type_id' => $faker->randomElement(App\MembershipType::pluck('id')->toArray()),
     ];
 });
 
