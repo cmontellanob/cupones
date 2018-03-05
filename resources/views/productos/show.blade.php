@@ -11,6 +11,7 @@ Mostrar Producto {{$product->product_name}}
     <div>Unidades en Stock: {{$product->units_in_stock}} </div>
     <div>Categoria: {{$product->category()->first()->category_name}} </div>
     <div>Restantes Puntos de Credito: {{$product->reward_points_credit}} </div>
+    <a href="{{ route('products.addToCart',$product->id)}}" class="btn btn-light" >añadir carrito</a>
     <?php $preciosproducto=  App\ProductPricing::where('product_id',$product->id)->get(); 
     $productosdescuentos=$product->productdiscount()->get();
     ?>
@@ -71,5 +72,6 @@ Mostrar Producto {{$product->product_name}}
     </div>
     </div>
   </div>
-</div>    
+</div>   
+
 @endsection

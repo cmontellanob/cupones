@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('title')
-Carrito de Compras
+Carrito de Compras <a class="btn btn-danger pull-right"href="{{route('products.deleteCart')}}" >Vaciar Carrito</a>
 @endsection
 @section('content')
 
-@if(Session::has('cart'))
+@if(Session::has('cart') and Session::get('cart')->totalQty>0  )
+ 
    <table class="table">
         <thead class="thead-dark">
     <tr>

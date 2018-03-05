@@ -61,10 +61,11 @@ class ManageProductsController extends Controller
         $product = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add(['product_name'=>$product->product_name,
+        $item=['product_name'=>$product->product_name,
                     'price'=>$product->Precio,
-                   ], $product->id);
-        
+                   ];
+        $cart->state()->addtoCart($cart,$item , $product->id);
+                
         $request->session()->put('cart', $cart);
         return redirect()->route('home');
     }
@@ -76,5 +77,11 @@ class ManageProductsController extends Controller
         $cart = new Cart($oldCart);
         return view('shop.shopping-cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+     public function deleteCart() {
+        if (Session::has('cart')) {
+            Session::get('cart')->state()->clearCart(Session::get('cart'));
+             return redirect()->route('home');
+        }
+        }
 
 }
