@@ -11,6 +11,6 @@ class ProductPricingSeeder extends Seeder
      */
     public function run()
     {
-        factory(ProductPricing::class, 40)->create();
+        factory(ProductPricing::class, 240)->create();
     }
 }
