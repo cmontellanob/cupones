@@ -25,7 +25,7 @@ Mostrar Producto {{$product->product_name}}
       <th scope="col">Activo</th>
     </tr>
   </thead>
-  <?php $i=0; ?>
+  <?php $i=0;  ?>
     @foreach ($preciosproducto as $precioproducto)
     <tr>
         <?php $i++?>

@@ -28,6 +28,9 @@ Route::resource('products',"ManageProductsController",[
     'only'         => ['index',"show","edit","store","update","create"],
 ]);
 
+Route::get('add-to-cart/{id}', 'ManageProductsController@getAddToCart')->name('products.addToCart');
+Route::get('get-cart', 'ManageProductsController@getCart')->name('products.getCart');
+
 Route::get('user/{user_id}',function($user_id){
     $user=App\User::find($user_id);
  return view('auth.profile')->withUser($user);

@@ -10,7 +10,7 @@ $factory->define(App\ProductDiscount::class, function (Faker $faker) {
         //
         'product_id'=>$faker->randomElement(App\Product::pluck('id')->toArray()),
         'discount_value'=> $faker->randomNumber(1),
-        'discount_unit' =>$faker->randomElement(['litro','kilo','pieza','metro']),
+        'discount_unit' =>$faker->randomElement(['porcentaje','valor']),
         'create_date'=>$inicial,
         'valid_from'=> $validodesde,
         'valid_until'=> $validohasta,

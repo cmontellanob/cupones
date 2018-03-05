@@ -14,19 +14,14 @@
            <div>
            {{ $product->product_description}}
            Precio: {{$product->Precio}}Bs
+           
+            <a href="{{ route('products.addToCart',$product->id)}}" class="btn btn-light" >añadir carrito</a>
+             
+               
+             
+           
            <hr>
-           <form class="form-horizontal" action="{{route('descuento')}}" method="post">
-             {{ csrf_field() }}
-             <input type="hidden" name="product_id" value="{{$product->id}}">
-           <div class="input-group">
-               <div class="col-xs-2">
-               <input type="text" class="form-control" name="cupon_code" placeholder="codigo cupon" aria-describedby="basic-addon1" maxlength="20" >
-               </div>
-               </div>
-             <div class="input-group">
-                  <input type="submit" name="" class="btn btn-info pull-right" value="Obtener Descuento">
-             </div>
-        </form>
+           
            
       </div>
         

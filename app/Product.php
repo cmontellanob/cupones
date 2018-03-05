@@ -14,9 +14,17 @@ class Product extends Model
    
     public function getPrecioAttribute()
     {
-        $price=ProductPricing::where('product_id',$this->id)->where('in_active','Y')->first();
-        if (isset($price->base_price))
-           return $price->base_price;
+        $prices=ProductPricing::where('product_id',$this->id)->orderBy('create_date')->get();
+        if (!$prices==null) 
+        {    
+        $precio=$prices->first()->base_price;
+        foreach($prices as $price )
+            {
+                if ($price->in_active=='Y')
+                $precio=$price-> base_price;
+            }
+            return $precio; 
+        }
         else return 0;    
     }
     public function category()
@@ -29,5 +37,6 @@ class Product extends Model
         return $this->HasMany(ProductDiscount::class,'product_id');
      
     }
+
 }
 
