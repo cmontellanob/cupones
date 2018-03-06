@@ -33,6 +33,8 @@ Route::get('get-cart', 'ManageCartController@getCart')->name('cart.getCart');
 Route::get('delete-cart', 'ManageCartController@deleteCart')->name('cart.deleteCart');
 Route::post('get-descuento', 'ManageCartController@getDescuento')->name('cart.getDescuento');
 Route::get('retirar-descuento', 'ManageCartController@retriveDescuento')->name('cart.retriveDescuento');
+Route::get('command', 'ManageCommandController@show')->name('command.show');
+Route::post('command-execute', 'ManageCommandController@execute')->name('command.execute');
 
 
 Route::get('user/{user_id}',function($user_id){

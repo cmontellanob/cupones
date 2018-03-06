@@ -15,8 +15,8 @@
       <div >
             <a class="navbar-brand" href="{{url('/')}}">Inicio</a>
         <a class="navbar-brand" href="{{route("productcategories.index")}}">Categorias</a>
-        <a class="navbar-brand" href="#">Comprar</a>
-        {{now()}}
+        <a class="navbar-brand" href="{{route("command.show")}}">Ejecutar Comandos</a>
+        {{date('Y-m-d')}}
         
                     <a class="navbar-brand" href="{{route('cart.getCart')}}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito de Compras
