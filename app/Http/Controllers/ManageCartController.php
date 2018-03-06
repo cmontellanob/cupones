@@ -16,7 +16,7 @@ class ManageCartController extends Controller
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
         $item=['product_name'=>$product->product_name,
-                    'price'=>$product->Precio,'descuento'=>0
+                    'price'=>$product->Precio,'descuento'=>0,'subtotaldiscount'=>0
                    ];
         $cart->state()->addtoCart($cart,$item , $product->id);
                 

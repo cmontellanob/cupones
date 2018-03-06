@@ -71,14 +71,26 @@ class Cart
     // aplicacion del patron change of responsability para obtener el descuento del producto
             
         $descuento=$descontador->obtenerDescuento($product_id,$cupon);
+        
+           $this->items[$product_id]['discount']=$descuento;
+           $this->items[$product_id]['subtotaldiscount']=$descuento/100*$this->items[$product_id]['qty']*$this->items[$product_id]['price'];
         if ($descuento>0)
         { 
-           $this->items[$product_id]['discount']=$descuento;
-           $this->items[$product_id]['subotaldiscount']=$descuento/100*$this->items[$product_id]['qty']*$this->items[$product_id]['price'];
            $this->discount='Cupon con descuento';
         }
         $this->cupon=$cupon;
         }
    
+    }
+    public function getTotalWithDiscount()
+    {
+        $total=0;
+        
+        foreach ($this->items as $item)
+        {  
+            if (isset($item['subtotaldiscount']))
+               $total+=$item['subtotaldiscount'];
+        }
+        return $total;
     }
 }

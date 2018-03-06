@@ -34,7 +34,7 @@ Carrito de Compras <a class="btn btn-danger pull-right"href="{{route('cart.delet
                <td>{{ $product['subtotal'] }}</td>
                @if (Session::get('cart')->discount)
             <th scope="col">{{$product['discount']}}</th>
-            <th scope="col">{{$product['subotaldiscount']}}</th>
+            <th scope="col">{{$product['subtotaldiscount']}}</th>
       @endif      
           </tr>
           
@@ -45,7 +45,13 @@ Carrito de Compras <a class="btn btn-danger pull-right"href="{{route('cart.delet
         <div class="row">
             <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
                 <strong>Total: {{ Session::get('cart')->totalPrice }}</strong>
+                <?php $totalDescuento=Session::get('cart')->getTotalWithDiscount();
+                $totalporPagar=Session::get('cart')->totalPrice-$totalDescuento?>
                 @if (!Session::get('cart')->cupon==null)
+                <strong>Total Descuento: {{ $totalDescuento }}</strong>
+                <div>
+                <strong>Total por Pagar: {{ $totalporPagar }}</strong>
+                </div>
                 <strong>Cupon: {{ Session::get('cart')->cupon }}</strong>
                 @endif
             </div>
