@@ -15,7 +15,7 @@
            {{ $product->product_description}}
            Precio: {{$product->Precio}}Bs
            
-            <a href="{{ route('products.addToCart',$product->id)}}" class="btn btn-light" >añadir carrito</a>
+            <a href="{{ route('cart.addToCart',$product->id)}}" class="btn btn-light" >añadir carrito</a>
              
                
              

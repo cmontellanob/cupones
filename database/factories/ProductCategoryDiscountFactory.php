@@ -9,8 +9,8 @@ $factory->define(App\ProductCategoryDiscount::class, function (Faker $faker) {
     
     return [
         'product_category_id'=>$faker->randomElement(App\ProductCategory::pluck('id')->toArray()),
-        'discount_value'=> $faker->randomNumber(1),
-        'discount_unit'=> $faker->randomElement(['porcentaje','valor']),
+        'discount_value'=> $faker->randomNumber(2),
+        'discount_unit'=> $faker->randomElement(['Cualqueira','10-100','100-200']),
         'create_date'=> $inicial,
         'valid_from'=> $validodesde,
         'valid_until'=> $validohasta,

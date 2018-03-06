@@ -3,15 +3,18 @@
 namespace App;
 class ProductDiscounter extends Discounter
 {
-	public function  obtenerDescuento(Product $product,$cupon)
+	public function  obtenerDescuento($product_id,$cupon)
 	{  
             
-            $ProductDiscount=ProductDiscount::where('coupon_code',$cupon)->where('product_id',$product->id)->first();
-            
+            $ProductDiscount=ProductDiscount::where('coupon_code',$cupon)
+                                            ->where('product_id',$product_id)
+                                            ->where('valid_from','<=', date('Y-m-d'))
+                                            ->where('valid_until','>=', date('Y-m-d'))   
+                                            ->first();
             if ($ProductDiscount==null)
-                return ['Motivo'=>'','Descuento'=>'Sin descuentos'];
+                return 0;
             else    
-		return ['Motivo'=>$this->name,'Descuento'=>$ProductDiscount->discount_value];
+		return $ProductDiscount->discount_value;
 	}
 }
 

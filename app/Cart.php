@@ -45,16 +45,40 @@ class Cart
 	}
 
     public function add($item, $id) {
-        $storedItem = ['qty' => 0, 'price' => $item['price'], 'item' => $item];
+        $storedItem = ['qty' => 0, 'price' => $item['price'],'subtotal' => 0, 'product_name' => $item['product_name'],'discount'=>0];
         if ($this->items) {
             if (array_key_exists($id, $this->items)) {
                 $storedItem = $this->items[$id];
             }
         }
         $storedItem['qty']++;
-        $storedItem['price'] = $item['price'] * $storedItem['qty'];
+        $storedItem['subtotal'] = $item['price'] * $storedItem['qty'];
         $this->items[$id] = $storedItem;
         $this->totalQty++;
         $this->totalPrice += $item['price'];
+    }
+    public function getDescuentos($cupon)
+    {
+    $descontador = new \App\CategoryDiscounter('Categoria');
+    $descontadorProducto = new \App\ProductDiscounter('Producto');
+    // colocar el siguiente
+    
+    $descontador->setSiguienteDescontador($descontadorProducto);
+    //obtener el descuento verificar si el cupon tiene descuento  
+    $i=0;$i++;
+        foreach ($this->items as $product_id=>$item)
+        {
+    // aplicacion del patron change of responsability para obtener el descuento del producto
+            
+        $descuento=$descontador->obtenerDescuento($product_id,$cupon);
+        if ($descuento>0)
+        { 
+           $this->items[$product_id]['discount']=$descuento;
+           $this->items[$product_id]['subotaldiscount']=$descuento/100*$this->items[$product_id]['qty']*$this->items[$product_id]['price'];
+           $this->discount='Cupon con descuento';
+        }
+        $this->cupon=$cupon;
+        }
+   
     }
 }

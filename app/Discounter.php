@@ -5,7 +5,7 @@ abstract class Discounter
 	protected $siguientedescontador;
         protected $name;
         
-	abstract public function obtenerDescuento(Product $product,$cupon);
+	abstract public function obtenerDescuento($product_id,$cupon);
         
         public function setSiguienteDescontador(Discounter $siguientedescontador)
         {
@@ -16,12 +16,12 @@ abstract class Discounter
 	{
 		$this->name = $name;
 	}
-        protected function buscarotrodescontador(Product $product,$cupon ) // delegar  resolucion a otro objeto
+        protected function buscarotrodescontador($product_id,$cupon ) // delegar  resolucion a otro objeto
 	{
 	  	
             if ($this->siguientedescontador)
             {   
-                return $this->siguientedescontador->obtenerDescuento($product,$cupon);
+                return $this->siguientedescontador->obtenerDescuento($product_id,$cupon);
             }
 	}
 

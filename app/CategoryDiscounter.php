@@ -2,16 +2,21 @@
 namespace App;
 class CategoryDiscounter extends Discounter
 {
-	public function  obtenerDescuento(Product $product,$cupon)
+	public function  obtenerDescuento($product_id,$cupon)
 	{
-      
-            $ProductCategoryDiscount=ProductCategoryDiscount::where('coupon_code',$cupon)->where('product_category_id',$product->product_category_id)->first();
+            $product=Product::find($product_id);
+            
+            $ProductCategoryDiscount=ProductCategoryDiscount::where('coupon_code',$cupon)
+                                                            ->where('product_category_id',$product->product_category_id)
+                                                            ->where('valid_from','<=', date('Y-m-d'))
+                                                            ->where('valid_until','>=', date('Y-m-d'))  
+                                                            ->first();
          
             if ($ProductCategoryDiscount==null)
             {  
-                return $this->buscarotrodescontador($product,$cupon );
+                return $this->buscarotrodescontador($product_id,$cupon );
             }
                 else    
-        return ['Motivo'=>$this->name,'Descuento'=>$ProductCategoryDiscount->discount_value];
+            return $ProductCategoryDiscount->discount_value;
 	}
 }

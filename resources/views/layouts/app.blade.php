@@ -18,7 +18,7 @@
         <a class="navbar-brand" href="#">Comprar</a>
         {{now()}}
         
-                    <a class="navbar-brand" href="{{route('products.getCart')}}">
+                    <a class="navbar-brand" href="{{route('cart.getCart')}}">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i> Carrito de Compras
                         <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                     </a>

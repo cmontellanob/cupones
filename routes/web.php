@@ -28,10 +28,12 @@ Route::resource('products',"ManageProductsController",[
     'only'         => ['index',"show","edit","store","update","create"],
 ]);
 
-Route::get('add-to-cart/{id}', 'ManageProductsController@getAddToCart')->name('products.addToCart');
-Route::get('get-cart', 'ManageProductsController@getCart')->name('products.getCart');
-Route::get('delete-cart', 'ManageProductsController@deleteCart')->name('products.deleteCart');
-Route::post('get-descuento', 'ManageProductsController@getDescuento')->name('products.getDescuento');
+Route::get('add-to-cart/{id}', 'ManageCartController@getAddToCart')->name('cart.addToCart');
+Route::get('get-cart', 'ManageCartController@getCart')->name('cart.getCart');
+Route::get('delete-cart', 'ManageCartController@deleteCart')->name('cart.deleteCart');
+Route::post('get-descuento', 'ManageCartController@getDescuento')->name('cart.getDescuento');
+Route::get('retirar-descuento', 'ManageCartController@retriveDescuento')->name('cart.retriveDescuento');
+
 
 Route::get('user/{user_id}',function($user_id){
     $user=App\User::find($user_id);

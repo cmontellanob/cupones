@@ -17,8 +17,11 @@ class ShoppingState implements CartState
 
 	public function applyCupon($cart, $cupon)
 	{
-		 $cart->setState(new DiscountState); // cambiar al estado descontando
-	}
+            $cart->getDescuentos($cupon);
+            $cart->setState(new DiscountingState); // cambiar al estado descontando
+	
+                 
+        }
         public function retriveCupon($cart)
         {
                 print "No se aplico ningun cupon"; 
